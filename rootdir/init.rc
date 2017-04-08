@@ -450,10 +450,6 @@ on post-fs-data
 
     mkdir /data/anr 0775 system system
 
-    # symlink to bugreport storage location
-    rm /data/bugreports
-    symlink /data/user_de/0/com.android.shell/files/bugreports /data/bugreports
-
     # Separate location for storing security policy files on data
     mkdir /data/security 0711 system system
 
@@ -465,6 +461,7 @@ on post-fs-data
     mkdir /data/system 0775 system system
     mkdir /data/system/heapdump 0700 system system
     mkdir /data/system/users 0775 system system
+    mkdir /data/system/theme 0755 system system
 
     mkdir /data/system_de 0770 system system
     mkdir /data/system_ce 0770 system system
@@ -683,3 +680,9 @@ on property:ro.debuggable=1
 service flash_recovery /system/bin/install-recovery.sh
     class main
     oneshot
+    disabled
+
+# update recovery if enabled
+on property:persist.sys.recovery_update=true
+    start flash_recovery
+
