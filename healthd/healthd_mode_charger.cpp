@@ -179,8 +179,6 @@ static struct animation::frame default_animation_frames[] = {
         .disp_time = 750,
         .min_level = 80,
         .max_level = 95,
-        .min_capacity = 80,
-        .level_only = false,
         .surface = NULL,
     },
     {
